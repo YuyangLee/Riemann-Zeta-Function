@@ -16,7 +16,6 @@ def get_args():
 if __name__ == '__main__':
     args = get_args()
     
-    
     if args.zeta2:
         s = 2
         N = math.ceil(2 * (10**args.precision))
@@ -26,7 +25,7 @@ if __name__ == '__main__':
         N = math.ceil(math.pow(2, 1./7.) * math.pow(10, args.precision / 7))
         D = args.precision + 1
     
-    D = math.floor(math.log2(10**D))
+    D = math.ceil(math.log2(10**D))
     gmpy2.get_context().precision = D
     sum = zeta(s, N, verbose=True)
     sum = mpfr(sum)
