@@ -5,13 +5,15 @@ import gmpy2
 from gmpy2 import mpfr, mpq
 
 from utils.zeta import zeta
-
+from utils.prec import set_dec_prec
 
 def get_args():
     parser = argparse.ArgumentParser()
     parser.add_argument("--precision", type=int, default=20)
     parser.add_argument("--zeta2", action='store_true')
     return parser.parse_args()
+
+
     
 if __name__ == '__main__':
     args = get_args()
@@ -22,15 +24,15 @@ if __name__ == '__main__':
         D = args.precision + math.ceil(math.log(N))
     else:
         s = 8
-        N = math.ceil(math.pow(2, 1./7.) * math.pow(10, args.precision / 7))
+        N = math.ceil(math.pow(10, (args.precision + 1) / 7))
+        # N = math.ceil(math.pow(2, 1./7.) * math.pow(10, args.precision / 7))
         D = args.precision + 1
     
-    D = math.ceil(math.log2(10**D))
-    gmpy2.get_context().precision = D
+    set_dec_prec(D)
     sum = zeta(s, N, verbose=True)
     sum = mpfr(sum)
     
     pi = gmpy2.root(sum * 9450, 8)
     
-    print(f"pi = {pi.digits()}")
+    print(f"pi = { pi.digits() }")
     
