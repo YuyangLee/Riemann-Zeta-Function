@@ -47,3 +47,6 @@ def zeta_int(x, t):
 
 def zeta_int_np(x, t):
     return np.power(t, x-1) / (np.exp(t) - 1 + 1e-14)
+
+def gamma_int(x, z):
+    return (z**(x-1)) * gmpy2.exp(-z)

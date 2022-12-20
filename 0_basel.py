@@ -4,7 +4,7 @@ import math
 import gmpy2
 from gmpy2 import mpfr, mpq
 
-from utils.zeta import zeta
+from utils.funcs import zeta
 from utils.prec import set_dec_prec
 from utils.time import timing
 

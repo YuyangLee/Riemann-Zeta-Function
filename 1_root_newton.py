@@ -5,7 +5,7 @@ import gmpy2
 from gmpy2 import mpfr, mpq
 from tqdm import tqdm, trange
 
-from utils.zeta import zeta, zeta_prime
+from utils.funcs import zeta, zeta_prime
 from utils.prec import set_dec_prec
 from utils.time import timing
 

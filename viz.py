@@ -2,7 +2,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import seaborn as sns
 
-from utils.zeta import zeta_np, zeta_int_np
+from utils.funcs import zeta_np, zeta_int_np
 
 sns.set()
 
