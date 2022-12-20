@@ -16,6 +16,8 @@ def zeta(s, N, verbose=False):
     """
     Compute the Riemann zeta function at s, summation from n = 1 to n = N.
     """
+    if s == 0:
+        return np.inf
     sum = mpfr(0)
     # for n in trange(1, N+1):
     n = 1

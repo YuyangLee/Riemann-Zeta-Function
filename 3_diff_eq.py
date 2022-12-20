@@ -6,6 +6,8 @@ from gmpy2 import mpfr, mpq
 from tqdm import tqdm, trange
 
 from utils.zeta import zeta
+from utils.time import timing
+from utils.prec import set_dec_prec
 
 
 def get_args():
@@ -16,32 +18,33 @@ def get_args():
     parser.add_argument("--x", type=float, default=4.0)
     return parser.parse_args()
 
+@timing
+def diff_eq(x_0, y_0, N_divide, f):
+    y = mpfr(y_0)
+    for i in trange(N_divide):
+        K_1 = f(y)
+        K_2 = f(y + h * K_1)
+        y += h * (K_1 + K_2) / 2
+    return y
+
 if __name__ == '__main__':
     args = get_args()
     
     x_0, y_0, x = args.x_0, args.y_0, args.x
     L = x - x_0
     
-    # TODO: Computation
-    N_divide, N_sum, D = 1000, 1000, 32
+    # TODO: Precise extimation of hyper params
+    N_divide, N_sum, D = 100, 1000, 10
     h = mpfr(L / N_divide)
     
     f = lambda x: zeta(x, N_sum)
     
-    gmpy2.get_context().precision = D
+    set_dec_prec(D)
+
+    y, time = diff_eq(x_0, y_0, N_divide, f)    
     
-    y = mpfr(y_0)
-    for i in trange(N_divide):
-        # K_1 = f(x_0 + h * i)
-        # K_2 = f(x_0 + h * i + h / 2)
-        # y += h * (K_1 + K_2) / 2
-        
-        K_1 = f(x_0 + h * i)
-        K_2 = f(x_0 + h * i + K_1 * h / 2)
-        K_3 = f(x_0 + h * i + K_2 * h / 2)
-        K_4 = f(x_0 + h * i + K_3 * h    )
-        y += h * (K_1 + 2 * K_2 + 2 * K_3 + K_4) / 6
-    
-    print(f"integral = {float(y)}")
-    print(f"integral = {y.digits()}")
+    print(f"Target precision: {args.precision}")
+    print(f"N_divide = {N_divide}, N_sum = {N_sum}, D = {D}")
+    print(f"res = {y.digits()}")
+    print(f"Time spent: {time} ms")
     
