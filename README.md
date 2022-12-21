@@ -1,6 +1,6 @@
 # Riemann-Zeta Function
 
-> This is Yuyang's codebase for his course project for Numerical Analysis and Algorithms (40250443-0, Fall 2022) at THU.
+> This is Yuyang's codebase for his course project for Numerical Analysis and Algorithms (40250443-0, Fall 2022) at THU. **This repo will be open source after the course project is due.**
 
 ## 安装依赖
 
@@ -21,8 +21,8 @@ pip install numpy gmpy tqdm   # Tested on Python 3.9 with Ubuntu 22.04 LTS
 通过计算 $\zeta(8)$ （或 $\zeta(2)$）求解问题 $\pi$。
 
 ```shell
-python 0_basel.py --precision PRECISION : 精度 m，默认为 20
-                  --zeta2               : 使用 zeta(2) 求解；否则使用 zeta(8)，默认为 False
+python 0_basel.py [--precision PRECISION] : 精度 m，默认为 20
+                  [--zeta2]               : 使用 zeta(2) 求解；否则使用 zeta(8)，默认为 False
 ```
 
 ### 问题 2：方程求根
