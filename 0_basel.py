@@ -38,6 +38,6 @@ if __name__ == '__main__':
     
     print(f"Target precision: {args.precision}")
     print(f"N = {N}, D = {D}")
-    print(f"pi = { pi.digits() }")
+    print(f"pi = { ('{0:.' + str(args.precision) + 'f}').format(pi) }")
     print(f"Time spent: {time} ms")
     

@@ -65,6 +65,6 @@ if __name__ == '__main__':
     
     print(f"Target precision: {args.precision}")
     print(f"N_sum = {N_sum}, N_divide = {N_divide}, N_subdivide = {N_subdivide}, X_max = {X_max}, D = {D}")
-    print(f"integral = {I.digits()}")
+    print(f"integral = {('{0:.' + str(args.precision) + 'f}').format(I)}")
     print(f"Time spent: {time} ms")
     

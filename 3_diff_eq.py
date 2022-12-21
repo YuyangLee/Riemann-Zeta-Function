@@ -45,6 +45,6 @@ if __name__ == '__main__':
     
     print(f"Target precision: {args.precision}")
     print(f"N_divide = {N_divide}, N_sum = {N_sum}, D = {D}")
-    print(f"res = {y.digits()}")
+    print(f"res = {('{0:.' + str(args.precision) + 'f}').format(y)}")
     print(f"Time spent: {time} ms")
     
